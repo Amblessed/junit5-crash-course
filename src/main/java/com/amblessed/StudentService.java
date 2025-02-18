@@ -23,4 +23,52 @@ public class StudentService {
         students.add(student);
     }
 
+    public Student getStudentById(int id) {
+        return students.stream().filter(student -> student.getId() == id).findFirst().orElse(null);
+    }
+
+    public String[] getStudentNamesByDepartment(String department) {
+        return students
+                .stream()
+                .filter(student -> student.getDepartment().equals(department))
+                .map(Student::getName)
+                .toArray(String[]::new);
+    }
+
+    public Integer[] getStudentIdsByDepartment(String department) {
+        return students
+                .stream()
+                .filter(student -> student.getDepartment().equals(department))
+                .map(Student::getId)
+                .toArray(Integer[]::new);
+    }
+
+    public List<String> getStudentNamesListByDepartment(String department) {
+        return students
+                .stream()
+                .filter(student -> student.getDepartment().equals(department))
+                .map(Student::getName)
+                .toList();
+    }
+
+    public List<Integer> getStudentIdsListByDepartment(String department) {
+        return students
+                .stream()
+                .filter(student -> student.getDepartment().equals(department))
+                .map(Student::getId)
+                .toList();
+    }
+
+
+    /**
+     * @param name Student name to search for
+     * @return Student if  found, else throw StudentNotFoundException
+     */
+    public Student getStudentByName(String name) {
+        return students
+                .stream()
+                .filter(student -> student.getName().equals(name))
+                .findFirst().orElseThrow(() -> new StudentNotFoundException("Student not found"));
+    }
+
 }

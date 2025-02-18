@@ -17,6 +17,12 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Student {
 
-    public int id;
-    public String name;
+    private int id;
+    private String name;
+    private String department;
+
+    public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
