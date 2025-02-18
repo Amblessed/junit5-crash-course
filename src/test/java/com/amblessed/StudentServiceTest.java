@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @Created: 16-Feb-25
  */
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudentServiceTest {
 
     private StudentService studentService;
@@ -52,6 +52,7 @@ class StudentServiceTest {
 
     @Test
     @DisplayName("Test using AssertTrue")
+    @Order(1)
     void getStudentsTestAssertTrue(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         StudentService studentService = new StudentService();
@@ -63,6 +64,7 @@ class StudentServiceTest {
     //@Test
     @RepeatedTest(5)
     @DisplayName("Test using assertFalse")
+    @Order(2)
     void getStudentsTestAssertFalse(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         List<Student> listOfStudents = studentService.getStudents();
@@ -73,6 +75,7 @@ class StudentServiceTest {
 
     @Test
     @DisplayName("Test using assertNull")
+    @Order(3)
     void getStudentsByIdTestUsingAssertNull(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         studentService.addStudent(student);
@@ -83,6 +86,7 @@ class StudentServiceTest {
     //@Test
     @RepeatedTest(5)
     @DisplayName("Test using assertNotNull")
+    @Order(4)
     void getStudentsByIdTestUsingAssertNotNull(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         studentService.addStudent(student);
@@ -92,6 +96,7 @@ class StudentServiceTest {
 
     @Test
     @DisplayName("Test using assertEquals \uD83D\uDE03")
+    @Order(5)
     void getStudentsByIdTestUsingAssertEquals(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         studentService.addStudent(student);
@@ -104,6 +109,7 @@ class StudentServiceTest {
     //@Test
     @RepeatedTest(value = 5, name = RepeatedTest.LONG_DISPLAY_NAME)
     @DisplayName("Test using assertNotEquals")
+    @Order(6)
     void getStudentsByIdTestUsingAssertNotEquals(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         Student studentOne = new Student(1, faker.name().fullName());
@@ -122,6 +128,7 @@ class StudentServiceTest {
 
     @Test
     @DisplayName("Test using assertArrayEquals")
+    @Order(7)
     void getStudentsNamesByDepartmentTestUsingAssertArrayEquals(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         Student studentOne = new Student(1, faker.name().fullName(), "Computer Science");
@@ -139,6 +146,7 @@ class StudentServiceTest {
 
     @Test
     @DisplayName("Test using assertIterableEquals")
+    @Order(8)
     void getStudentsNamesListByDepartmentTestUsingAssertIterableEquals(){
 
         /* Elements of Iterable are equal
@@ -165,6 +173,7 @@ class StudentServiceTest {
 
     @Test
     @DisplayName("Test using assertThrows")
+    @Order(9)
     void getStudentByNameTestUsingAssertThrows(){
         /*
         * If the code throws an exception, the test will pass
@@ -186,6 +195,7 @@ class StudentServiceTest {
     @RepeatedTest(value = 5, name = RepeatedTest.CURRENT_REPETITION_PLACEHOLDER + " " + RepeatedTest.LONG_DISPLAY_NAME)
     @DisplayName("Test using assertThrowsExactly")
     @Disabled("This test 'assertThrowsExactly' is disabled because it is not working as expected\n")
+    @Order(10)
     void getStudentByNameTestUsingAssertThrowsExactly(){
         /*
          * If the code throws an exception, the test will pass
@@ -205,10 +215,7 @@ class StudentServiceTest {
         catch (AssertionError e){
             System.out.println("AssertThrowsExactly failed because it does not follow the inheritance hierarchy");
         }
-
     }
-
-
 
 
 }
