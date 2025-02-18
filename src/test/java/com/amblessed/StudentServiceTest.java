@@ -1,9 +1,7 @@
 package com.amblessed;
 
 import net.datafaker.Faker;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 
@@ -19,9 +17,43 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StudentServiceTest {
 
+    private StudentService studentService;
+    private Faker faker;
+    private Student student;
+
+
+    //This would before each test
+    @BeforeEach
+    void setUp() {
+        System.out.println("Setting up test");
+        studentService = new StudentService();
+        faker = new Faker();
+        student = new Student(1, faker.name().fullName());
+    }
+
+    //This would after each test
+    @AfterEach
+    void tearDown() {
+        studentService = null;
+        faker = null;
+        student = null;
+        System.out.println("Test completed\n");
+    }
+
+    @BeforeAll
+    static void beforeAll(){
+        System.out.println("**********Before all tests**********");
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println("**********After all tests**********");
+    }
+
     @Test
     @DisplayName("Test using AssertTrue")
     void getStudentsTestAssertTrue(){
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         StudentService studentService = new StudentService();
         List<Student> listOfStudents = studentService.getStudents();
         boolean actualResult = listOfStudents.isEmpty();
@@ -31,9 +63,7 @@ class StudentServiceTest {
     @Test
     @DisplayName("Test using assertFalse")
     void getStudentsTestAssertFalse(){
-        StudentService studentService = new StudentService();
-        Faker faker = new Faker();
-        Student student = new Student(1, faker.name().fullName());
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         List<Student> listOfStudents = studentService.getStudents();
         studentService.addStudent(student);
         boolean actualResult = listOfStudents.isEmpty();
@@ -43,9 +73,7 @@ class StudentServiceTest {
     @Test
     @DisplayName("Test using assertNull")
     void getStudentsByIdTestUsingAssertNull(){
-        StudentService studentService = new StudentService();
-        Faker faker = new Faker();
-        Student student = new Student(1, faker.name().fullName());
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         studentService.addStudent(student);
         Student actualResult = studentService.getStudentById(8);
         assertNull(actualResult);
@@ -54,9 +82,7 @@ class StudentServiceTest {
     @Test
     @DisplayName("Test using assertNotNull")
     void getStudentsByIdTestUsingAssertNotNull(){
-        StudentService studentService = new StudentService();
-        Faker faker = new Faker();
-        Student student = new Student(1, faker.name().fullName());
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         studentService.addStudent(student);
         Student actualResult = studentService.getStudentById(1);
         assertNotNull(actualResult);
@@ -65,22 +91,18 @@ class StudentServiceTest {
     @Test
     @DisplayName("Test using assertEquals \uD83D\uDE03")
     void getStudentsByIdTestUsingAssertEquals(){
-        StudentService studentService = new StudentService();
-        Faker faker = new Faker();
-        String fullName = faker.name().fullName();
-        Student student = new Student(1, fullName);
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         studentService.addStudent(student);
         Student actualResult = studentService.getStudentById(1);
         assertEquals(student, actualResult);
         assertEquals(student.getId(), actualResult.getId());
-        assertEquals(fullName, actualResult.getName());
+        assertEquals(student.getName(), actualResult.getName());
     }
 
     @Test
     @DisplayName("Test using assertNotEquals")
     void getStudentsByIdTestUsingAssertNotEquals(){
-        StudentService studentService = new StudentService();
-        Faker faker = new Faker();
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         Student studentOne = new Student(1, faker.name().fullName());
         studentService.addStudent(studentOne);
 
@@ -98,8 +120,7 @@ class StudentServiceTest {
     @Test
     @DisplayName("Test using assertArrayEquals")
     void getStudentsNamesByDepartmentTestUsingAssertArrayEquals(){
-        StudentService studentService = new StudentService();
-        Faker faker = new Faker();
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         Student studentOne = new Student(1, faker.name().fullName(), "Computer Science");
         Student studentTwo = new Student(2, faker.name().fullName(), "Computer Science");
         Student studentThree = new Student(3, faker.name().fullName(), "Arts");
@@ -121,9 +142,7 @@ class StudentServiceTest {
          * The order of elements should match
          * The number of elements should match
          * */
-
-        StudentService studentService = new StudentService();
-        Faker faker = new Faker();
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         Student studentOne = new Student(1, faker.name().fullName(), "Computer Science");
         Student studentTwo = new Student(2, faker.name().fullName(), "Computer Science");
         Student studentThree = new Student(3, faker.name().fullName(), "Arts");
@@ -150,8 +169,7 @@ class StudentServiceTest {
         * It follows an inheritance hierarchy; the assertion will pass if the expected type is the superclass(parent) of the actual exception type (subclass)
         * */
 
-        StudentService  studentService = new StudentService();
-        Faker faker = new Faker();
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         Student studentOne = new Student(1, faker.name().fullName(), "Computer Science");
         studentService.addStudent(studentOne);
         assertThrows(StudentNotFoundException.class, () -> studentService.getStudentByName("JohnPeter DoeDoeDoe"));
@@ -163,7 +181,7 @@ class StudentServiceTest {
 
     @Test
     @DisplayName("Test using assertThrowsExactly")
-    @Disabled("This test is disabled because it is not working as expected")
+    @Disabled("This test 'assertThrowsExactly' is disabled because it is not working as expected\n")
     void getStudentByNameTestUsingAssertThrowsExactly(){
         /*
          * If the code throws an exception, the test will pass
@@ -171,8 +189,7 @@ class StudentServiceTest {
          * It follows an inheritance hierarchy; the assertion will pass if the expected type is the superclass(parent) of the actual exception type (subclass)
          * */
 
-        StudentService  studentService = new StudentService();
-        Faker faker = new Faker();
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         Student studentOne = new Student(1, faker.name().fullName(), "Computer Science");
         studentService.addStudent(studentOne);
         assertThrowsExactly(StudentNotFoundException.class, () -> studentService.getStudentByName("JohnPeter DoeDoeDoe"));
