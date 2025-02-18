@@ -18,3 +18,27 @@
 - This annotation is used to control the order of the test methods in a class
 - It is used at the method level to specify the order of the test methods within the class
 - Used in conjunction with `@TestMethodOrder(MethodOrderer.OrderAnnotation.class)`
+
+ # @ValueSource
+- This annotation is used to create a parameterized test
+- It is used at the method level to specify the values to be used in the parameterized test
+- It is used in conjunction with `@ParameterizedTest`
+- Used to supply a single array of values to a test method. It supports arrays of primitive types, strings and classes
+
+# @EnumSource
+- This annotation is used to create a parameterized test
+- It is used at the method level to specify the values to be used in the parameterized test
+- It is used in conjunction with `@ParameterizedTest`
+- Allows you to specify enum constants as parameters for test methods, making it easy to test different enum values
+
+# @CsvSource
+- Used to supply comma separated values to a test method. 
+
+# @CsvFileSource
+- loads data from external CSV files and supplies to the test method
+
+# @MethodSource
+- Allows supplying arguments from factory methods (static methods) within the same class or external classes
+
+# @ArgumentsSource
+- Allows you to specify a custom provider by implementing the ArgumentsProvider interface
