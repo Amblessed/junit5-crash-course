@@ -60,7 +60,8 @@ class StudentServiceTest {
         assertTrue(actualResult);
     }
 
-    @Test
+    //@Test
+    @RepeatedTest(5)
     @DisplayName("Test using assertFalse")
     void getStudentsTestAssertFalse(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
@@ -79,7 +80,8 @@ class StudentServiceTest {
         assertNull(actualResult);
     }
 
-    @Test
+    //@Test
+    @RepeatedTest(5)
     @DisplayName("Test using assertNotNull")
     void getStudentsByIdTestUsingAssertNotNull(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
@@ -99,7 +101,8 @@ class StudentServiceTest {
         assertEquals(student.getName(), actualResult.getName());
     }
 
-    @Test
+    //@Test
+    @RepeatedTest(value = 5, name = RepeatedTest.LONG_DISPLAY_NAME)
     @DisplayName("Test using assertNotEquals")
     void getStudentsByIdTestUsingAssertNotEquals(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
@@ -179,7 +182,8 @@ class StudentServiceTest {
 
     }
 
-    @Test
+    //@Test
+    @RepeatedTest(value = 5, name = RepeatedTest.CURRENT_REPETITION_PLACEHOLDER + " " + RepeatedTest.LONG_DISPLAY_NAME)
     @DisplayName("Test using assertThrowsExactly")
     @Disabled("This test 'assertThrowsExactly' is disabled because it is not working as expected\n")
     void getStudentByNameTestUsingAssertThrowsExactly(){
