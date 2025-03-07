@@ -13,6 +13,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.11.4</junit.version>
+        <junit.platform.version>1.11.4</junit.platform.version>
     </properties>
 
 
@@ -47,9 +48,19 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-engine</artifactId>
-            <version>1.11.4</version>
+            <version>${junit.platform.version}</version>
             <scope>test</scope>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-api -->
+        <!--<dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-api</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>-->
+
 
 
 
@@ -71,5 +82,56 @@
 
 
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.12</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>  <!-- sets up the JaCoCo Java Agent to collect coverage data during the test phase  -->
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal> <!-- This goal generates the coverage report based on the data collected by the JaCoCo agent  -->
+                            <goal>check</goal> <!-- This goal checks the coverage data collected by the JaCoCo agent and fails the build if the coverage threshold is not met  -->
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <!-- This would exclude the test classes from the coverage report -->
+                                <exclude>src/test/java/com/amblessed/**</exclude>
+                            </excludes>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element> <!-- This rule checks the coverage data for the entire project Other options include package, class, source file and method -->
+                                    <limits>
+                                        <limit>  <!-- Each limit defines a specific coverage metric and threshold that must be met-->
+                                            <counter>LINE</counter> <!-- Counter specifies the type of coverage metric to check. Options include LINE, BRANCH, INSTRUCTION, CLASS, METHOD -->
+                                            <!-- Covered ratio represents the percentage of covered elements in relation to the total number of elements -->
+                                            <value>COVEREDRATIO</value> <!-- Value specifies the type of threshold to check. Options include COVEREDRATIO, MISSEDCOUNT, COVEREDCOUNT -->
+                                            <minimum>0.9</minimum> <!-- Minimum specifies the threshold value that must be met. The minimum acceptable coverage ratio -->
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

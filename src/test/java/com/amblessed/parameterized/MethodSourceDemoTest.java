@@ -10,6 +10,7 @@ package com.amblessed.parameterized;
 
 
 import com.amblessed.Calculator;
+import com.amblessed.Factorial;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -25,8 +26,8 @@ public class MethodSourceDemoTest {
     @MethodSource({"argumentsProvider"})
     @DisplayName("Test the factorial of a number using MethodSource")
     void factorialTestUsingCsvSource(int number, int expectedResult) {
-        Calculator calculator = new Calculator();
-        long actualResult = calculator.factorial(number);
+        Factorial factorial = new Factorial();
+        long actualResult = factorial.factorial(number);
         assertEquals(expectedResult, actualResult);
     }
 

@@ -35,13 +35,13 @@ public class StudentService {
                 .toArray(String[]::new);
     }
 
-    public Integer[] getStudentIdsByDepartment(String department) {
+   /* public Integer[] getStudentIdsByDepartment(String department) {
         return students
                 .stream()
                 .filter(student -> student.getDepartment().equals(department))
                 .map(Student::getId)
                 .toArray(Integer[]::new);
-    }
+    }*/
 
     public List<String> getStudentNamesListByDepartment(String department) {
         return students

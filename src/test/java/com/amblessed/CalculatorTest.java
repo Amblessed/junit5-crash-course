@@ -16,8 +16,14 @@ class CalculatorTest {
 
     @Test
     void testAddMethod() {
+
+        //Arrange
         Calculator calculator = new Calculator();
+
+        //Act
         int actualResult = calculator.add(20, 30);
+
+        //Assert
         assertEquals(50, actualResult);
     }
 

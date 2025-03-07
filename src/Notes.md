@@ -42,3 +42,15 @@
 
 # @ArgumentsSource
 - Allows you to specify a custom provider by implementing the ArgumentsProvider interface
+
+
+# JaCoCo - Java Code Coverage
+- JaCoCo is a code coverage tool for Java
+- It is used to measure the amount of code that is executed during a test run
+- It is a plugin that can help you guarantee a certain test coverage percentage
+- run ``` * mvn clean test```. 
+- then  ``` * mvn jacoco:report```
+- by default report is place in the target directory/site/jacoco. Index.html file is used to see the report
+
+# @assertTimeout()
+- This is an assertion function that verifies a piece of code completes execution within a specified time period

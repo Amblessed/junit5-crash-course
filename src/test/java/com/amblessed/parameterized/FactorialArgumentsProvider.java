@@ -25,7 +25,7 @@ public class FactorialArgumentsProvider implements ArgumentsProvider {
      * @return a stream of arguments; never {@code null}
      */
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+    public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
         return Stream.of(
                 Arguments.of(0, 1),
                 Arguments.of(1, 1),
